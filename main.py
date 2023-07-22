@@ -2,7 +2,7 @@ from telebot import TeleBot, types
 from faker import Faker
 
 
-bot = TeleBot(token='ВСТАВЬ_СВОЙ_ТОКЕН', parse_mode='html') 
+bot = TeleBot(token='6393228976:AAEyUaw8YWw8W2vjmIJ-4OTvWgNEnSJw9k0', parse_mode='html') 
 
 faker = Faker() 
 
@@ -37,12 +37,12 @@ def message_handler(message: types.Message):
         return
 
     card_number = faker.credit_card_number(card_type)
-    card_expire = faker.credit_card_expire(card_type)
-    card_security_code = faker.credit_card_security_code(card_type)
+    card_expire = faker.credit_card_expire()
+    card_security_code = faker.credit_card_security_code()
 
     bot.send_message(
         chat_id=message.chat.id,
-        text=f'Тестовая карта {card_type}:\n{card_number}\n{card_expire}\n{card_security_code}'
+        text=f'Тестовая карта {card_type}:\nНомер карты: {card_number}\nСрок действия: {card_expire}\nCVV/CVC: {card_security_code}'
     )
 
 def main():
